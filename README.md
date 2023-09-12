@@ -1,6 +1,6 @@
 # pfd updater
 Bash script for price-feeder config update
-## Version 1.0
+## Version 1.1.2
 
 Applied for Umee and Ojo networks.
 
@@ -8,7 +8,7 @@ Script downloading new config file, export all data from [account] section till 
 
 As a result you have new config without manual editing.
 
-`listen_addr` will be changed to provided in new config file which you download. This will be fixed in next release.
+`listen_addr` is now part of persistent settings, so update won't touch it.
 
 ## How to use:
 Script suggest you have default variables for your price-feeder
@@ -24,6 +24,6 @@ Paste command in terminal and check your path and config name variables
 ```
 wget -q -O pfd_updater.sh https://raw.githubusercontent.com/validatorsunited/pfd_updater/main/pfd_updater.sh 
 nano pfd_updater.sh
-sudo chmod +x pfd_updater.sh
-sudo /bin/bash pfd_updater.sh
+chmod +x pfd_updater.sh
+/bin/bash pfd_updater.sh
 ```
