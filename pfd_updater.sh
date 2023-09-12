@@ -6,10 +6,10 @@ PATH_TO_PFD="$HOME/price-feeder_config"
 PFD_NAME="price-feeder.toml"
 
 #begin
-echo -e "\033[1mPFD updater 1.0\033[0m"
+echo -e "\033[1mPFD updater 1.1.2\033[0m"
 echo -e "\nYou have set variables for price-feeder:\n"
-echo -e "price-feeder dir:\n" $PATH_TO_PFD
-echo -e "price-feeder config:\n" $PFD_NAME
+echo -e "price-feeder dir path:\n" $PATH_TO_PFD
+echo -e "price-feeder config file name:\n" $PFD_NAME
 echo -e "\nInput raw link to new price-feeder.example.toml:\n"
 read input
 
