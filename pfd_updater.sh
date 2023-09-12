@@ -46,16 +46,16 @@ cat $PATH_TO_PFD/persistent.toml >> $PATH_TO_PFD/price-feeder.toml.tmp
 sed -i "s/$addr_to_change/$addr_present/" $PATH_TO_PFD/price-feeder.toml.tmp
 
 #create backup folder
-mkdir -p $PATH_TO_PFD/pfd_backups
+mkdir -p $PATH_TO_PFD/backups_pfd
 
 #creating backup file with existing price-feeder config
 echo -e "Creating backup file with your current $PFD_NAME..."
 sleep 1
 NOW=$( date '+%F_%H:%M:%S' )
-cp $PATH_TO_PFD/$PFD_NAME $PATH_TO_PFD/pfd_backups/$PFD_NAME.backup.$NOW
+cp $PATH_TO_PFD/$PFD_NAME $PATH_TO_PFD/backups_pfd/$PFD_NAME.backup.$NOW
 
 #check for backup exist
-BACKUP_FILE=$PATH_TO_PFD/pfd_backups/$PFD_NAME.backup.$NOW
+BACKUP_FILE=$PATH_TO_PFD/backups_pfd/$PFD_NAME.backup.$NOW
 if test -f "$BACKUP_FILE"; then
     echo -e "-----------------"
     echo -e "Created backup" $BACKUP_FILE "OK"
