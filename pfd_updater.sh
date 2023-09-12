@@ -31,11 +31,19 @@ else
     sed -n '/account/,$p' $PATH_TO_PFD/$PFD_NAME >> $PATH_TO_PFD/persistent.toml #collect persistent data from existing config
 fi
 
+#save listen_addr present value
+addr_to_change=$(cat $PATH_TO_PFD/price-feeder.example.toml | grep listen_addr)
+addr_present=$(cat $PATH_TO_PFD/$PFD_NAME | grep listen_addr)
+echo -e "Your present" $addr_present "OK\n"
+
 #collect all deviation_thresholds and currency_pairs data from price-feeder.example.toml
 tac $PATH_TO_PFD/price-feeder.example.toml | sed -n -e '/account/,$p' | tac | sed -n '/account/!p' >> $PATH_TO_PFD/price-feeder.toml.tmp
 
 #merge tmp file data with persistent data
 cat $PATH_TO_PFD/persistent.toml >> $PATH_TO_PFD/price-feeder.toml.tmp
+
+#change listen_addr from example value to present value
+sed -i "s/$addr_to_change/$addr_present/" $PATH_TO_PFD/price-feeder.toml.tmp
 
 #create backup folder
 mkdir -p $PATH_TO_PFD/pfd_backups
