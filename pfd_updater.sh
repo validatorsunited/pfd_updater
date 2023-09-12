@@ -23,12 +23,12 @@ if test -f "$TMP_FILE"; then
 fi
 
 #check for persistent file exist, if no create from existing config
-PERSISTENT_FILE=$PATH_TO_PFD/persistent.toml
+PERSISTENT_FILE=$PATH_TO_PFD/config_persistent.toml
 if test -f "$PERSISTENT_FILE"; then
     echo -e "Your persistent.toml exists OK\n"
 else
-    echo -e "No persistent data, creating persistent.toml with your settings...\n"
-    sed -n '/account/,$p' $PATH_TO_PFD/$PFD_NAME >> $PATH_TO_PFD/persistent.toml #collect persistent data from existing config
+    echo -e "No persistent data, creating config_persistent.toml with your settings...\n"
+    sed -n '/account/,$p' $PATH_TO_PFD/$PFD_NAME >> $PATH_TO_PFD/config_persistent.toml #collect persistent data from existing config
 fi
 
 #save listen_addr present value
@@ -40,7 +40,7 @@ echo -e "Your present" $addr_present "OK\n"
 tac $PATH_TO_PFD/price-feeder.example.toml | sed -n -e '/account/,$p' | tac | sed -n '/account/!p' >> $PATH_TO_PFD/price-feeder.toml.tmp
 
 #merge tmp file data with persistent data
-cat $PATH_TO_PFD/persistent.toml >> $PATH_TO_PFD/price-feeder.toml.tmp
+cat $PERSISTENT_FILE >> $PATH_TO_PFD/price-feeder.toml.tmp
 
 #change listen_addr from example value to present value
 sed -i "s/$addr_to_change/$addr_present/" $PATH_TO_PFD/price-feeder.toml.tmp
